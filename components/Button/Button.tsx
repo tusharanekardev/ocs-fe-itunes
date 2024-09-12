@@ -1,5 +1,5 @@
+import React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
-
 import { twMerge } from "tailwind-merge"
 
 const button = cva(
@@ -12,7 +12,6 @@ const button = cva(
     "border",
     "border-blue-400",
     "transition-colors",
-    "delay-50",
   ],
   {
     variants: {

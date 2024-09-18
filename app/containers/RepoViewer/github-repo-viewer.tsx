@@ -1,38 +1,37 @@
 "use client"
 
-import React, { useState } from "react"
+import React from "react"
+import { useRecoilState, useRecoilCallback } from "recoil"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-
-interface Repo {
-  id: number
-  name: string
-  stargazers_count: number
-  forks_count: number
-  updated_at: string
-  html_url: string
-}
+import { usernameState, reposState, errorState, loadingState, fetchReposSelector } from "./recoilState"
 
 export function GithubRepoViewer() {
-  const [error, setError] = useState("")
-  const [username, setUsername] = useState("")
-  const [repos, setRepos] = useState<Repo[]>([])
-  const [loading, setLoading] = useState(false)
-  const fetchRepos = async () => {
-    if (!username) return
+  const [username, setUsername] = useRecoilState(usernameState)
+  const [repos] = useRecoilState(reposState)
+  const [error, setError] = useRecoilState(errorState)
+  const [loading, setLoading] = useRecoilState(loadingState)
+
+  // Define a callback that triggers the selector manually
+  const fetchRepos = useRecoilCallback(({ snapshot, set }) => async () => {
     setLoading(true)
+    setError("")
     try {
-      const response = await fetch(`https://api.github.com/users/${username}/repos`)
-      if (!response.ok) throw new Error("Failed to fetch repositories")
-      const data = await response.json()
-      setRepos(data as Repo[])
-    } catch {
+      // Getting the repos by triggering the selector
+      const repoData = await snapshot.getPromise(fetchReposSelector)
+      set(reposState, repoData) // Setting the repos state with the fetched data
+    } catch (error) {
+      console.log(error)
+      set(reposState, []) // Setting the repos state with the fetched data
       setError("Failed to fetch repositories")
-      throw new Error("Failed to fetch repositories")
     } finally {
       setLoading(false)
     }
+  })
+
+  const handleFetchRepos = () => {
+    fetchRepos() // Trigger the Recoil callback
   }
 
   return (
@@ -46,7 +45,7 @@ export function GithubRepoViewer() {
           placeholder="Enter GitHub username"
           className="grow"
         />
-        <Button onClick={fetchRepos} disabled={loading}>
+        <Button onClick={handleFetchRepos} disabled={loading}>
           {loading ? "Loading..." : "Fetch Repos"}
         </Button>
       </div>

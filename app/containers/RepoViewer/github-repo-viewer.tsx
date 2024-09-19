@@ -2,12 +2,14 @@
 
 import React from "react"
 import { useRecoilState, useRecoilCallback } from "recoil"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
+import { useTranslations } from "next-intl"
+import { Button } from "@/app/components/ui/button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/app/components/ui/card"
+import { Input } from "@/app/components/ui/input"
 import { usernameState, reposState, errorState, loadingState, fetchReposSelector } from "./recoilState"
 
 export function GithubRepoViewer() {
+  const t = useTranslations()
   const [username, setUsername] = useRecoilState(usernameState)
   const [repos] = useRecoilState(reposState)
   const [error, setError] = useRecoilState(errorState)
@@ -20,33 +22,33 @@ export function GithubRepoViewer() {
     try {
       // Getting the repos by triggering the selector
       const repoData = await snapshot.getPromise(fetchReposSelector)
-      set(reposState, repoData) // Setting the repos state with the fetched data
+      set(reposState, repoData)
     } catch (error) {
       console.log(error)
-      set(reposState, []) // Setting the repos state with the fetched data
-      setError("Failed to fetch repositories")
+      set(reposState, [])
+      setError(t("error_fetch"))
     } finally {
       setLoading(false)
     }
   })
 
   const handleFetchRepos = () => {
-    fetchRepos() // Trigger the Recoil callback
+    fetchRepos()
   }
 
   return (
     <div className="container mx-auto max-w-3xl p-4">
-      <h1 className="mb-4 text-2xl font-bold">GitHub Repository Viewer</h1>
+      <h1 className="mb-4 text-2xl font-bold">{t("title")}</h1>
       <div className="mb-4 flex gap-2">
         <Input
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
-          placeholder="Enter GitHub username"
+          placeholder={t("enter_username")}
           className="grow"
         />
         <Button onClick={handleFetchRepos} disabled={loading}>
-          {loading ? "Loading..." : "Fetch Repos"}
+          {loading ? t("loading") : t("fetch_repos")}
         </Button>
       </div>
       {error && <p className="mb-4 text-red-500">{error}</p>}
@@ -66,9 +68,15 @@ export function GithubRepoViewer() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p>Stars: {repo.stargazers_count}</p>
-              <p>Forks: {repo.forks_count}</p>
-              <p>Last: {new Date(repo.updated_at).toLocaleDateString()}</p>
+              <p>
+                {t("stars")}: {repo.stargazers_count}
+              </p>
+              <p>
+                {t("forks")}: {repo.forks_count}
+              </p>
+              <p>
+                {t("last_updated")}: {new Date(repo.updated_at).toLocaleDateString()}
+              </p>
             </CardContent>
           </Card>
         ))}

@@ -1,17 +1,23 @@
-"use client"
 import React from "react"
+import { getLocale, getMessages } from "next-intl/server"
+import Head from "next/head"
 import "styles/tailwind.css"
-import { RecoilRoot } from "recoil"
-// import { RecoilDevTools } from "recoil-toolkit"
+import RootClientLayout from "./rootClientLayout"
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const messages = await getMessages()
+  const locale = await getLocale()
+
   return (
-    <RecoilRoot>
-      {/* uncomment the below tag to debug using Recoil Toolkit */}
-      {/* <RecoilDevTools forceSerialize={false} /> */}
-      <html lang="en">
-        <body>{children}</body>
-      </html>
-    </RecoilRoot>
+    <html lang={locale}>
+      <Head>
+        <link rel="icon" href="/favicon.png" />
+      </Head>
+      <body>
+        <RootClientLayout locale={locale} messages={messages}>
+          {children}
+        </RootClientLayout>
+      </body>
+    </html>
   )
 }

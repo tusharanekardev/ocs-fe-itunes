@@ -1,0 +1,10 @@
+{
+  "title": "GitHub Repository Viewer",
+  "enter_username": "Enter GitHub username",
+  "fetch_repos": "Fetch Repos",
+  "loading": "Loading...",
+  "error_fetch": "Failed to fetch repositories",
+  "stars": "Stars",
+  "forks": "Forks",
+  "last_updated": "Last Updated"
+}

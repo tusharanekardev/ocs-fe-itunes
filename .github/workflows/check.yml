@@ -1,4 +1,4 @@
-name: Check
+name: Next TS Template CI
 
 on:
   push:
@@ -11,7 +11,7 @@ on:
 
 jobs:
   check:
-    name: Check
+    name: Lint and Test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4

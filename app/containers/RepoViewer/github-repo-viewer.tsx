@@ -3,14 +3,14 @@
 import React from "react"
 import { useRecoilState, useRecoilCallback } from "recoil"
 import { useTranslations } from "next-intl"
-import { Button } from "@/app/components/ui/button"
-import { Card, CardContent, CardHeader, CardTitle } from "@/app/components/ui/card"
-import { Input } from "@/app/components/ui/input"
-import { usernameState, reposState, errorState, loadingState, fetchReposSelector } from "./recoilState"
+import { Card, CardContent, CardHeader, CardTitle } from "@/app/components/ui/card/card"
+import { Input } from "@/app/components/ui/input/input"
+import { Button } from "@/app/components/ui/button/button"
+import { repoNameState, reposState, errorState, loadingState, fetchReposSelector } from "./recoilState"
 
 export function GithubRepoViewer() {
   const t = useTranslations()
-  const [username, setUsername] = useRecoilState(usernameState)
+  const [repoName, setRepoName] = useRecoilState(repoNameState)
   const [repos] = useRecoilState(reposState)
   const [error, setError] = useRecoilState(errorState)
   const [loading, setLoading] = useRecoilState(loadingState)
@@ -20,7 +20,6 @@ export function GithubRepoViewer() {
     setLoading(true)
     setError("")
     try {
-      // Getting the repos by triggering the selector
       const repoData = await snapshot.getPromise(fetchReposSelector)
       set(reposState, repoData)
     } catch (error) {
@@ -42,8 +41,8 @@ export function GithubRepoViewer() {
       <div className="mb-4 flex gap-2">
         <Input
           type="text"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={repoName}
+          onChange={(e) => setRepoName(e.target.value)}
           placeholder={t("enter_username")}
           className="grow"
         />

@@ -1,4 +1,5 @@
 import { atom, selector } from "recoil"
+import { fetchWithCheck } from "@/lib/apiUtils"
 
 interface Repo {
   id: number
@@ -9,8 +10,8 @@ interface Repo {
   html_url: string
 }
 // Atom to store the username
-export const usernameState = atom<string>({
-  key: "usernameState",
+export const repoNameState = atom<string>({
+  key: "repoNameState",
   default: "",
 })
 
@@ -32,21 +33,19 @@ export const loadingState = atom<boolean>({
   default: false,
 })
 
+interface GitHubResponse {
+  total_count: number
+  incomplete_results: boolean
+  items: Repo[]
+}
+
 // Selector to fetch the repositories based on the username
 export const fetchReposSelector = selector<Repo[]>({
   key: "fetchReposSelector",
   get: async ({ get }) => {
-    const username = get(usernameState)
-    if (!username) return []
-
-    try {
-      const response = await fetch(`https://api.github.com/users/${username}/repos`)
-      if (!response.ok) throw new Error("Failed to fetch repositories")
-      const data = await response.json()
-      return data as Repo[]
-    } catch (error) {
-      console.log(error)
-      throw error
-    }
+    const repoName = get(repoNameState)
+    if (!repoName) return []
+    const data = await fetchWithCheck(`https://api.github.com/search/repositories?q=${repoName}`)
+    return (data as GitHubResponse).items
   },
 })

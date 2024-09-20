@@ -1,6 +1,6 @@
 {
   "title": "GitHub Repository Viewer",
-  "enter_username": "Enter GitHub username",
+  "enter_username": "Enter GitHub Repo Name",
   "fetch_repos": "Fetch Repos",
   "loading": "Loading...",
   "error_fetch": "Failed to fetch repositories",

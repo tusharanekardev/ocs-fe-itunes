@@ -7,6 +7,11 @@ import pluginSecurity from "eslint-plugin-security"
 import tailwind from "eslint-plugin-tailwindcss"
 
 export default [
+  {
+    rules: {
+      complexity: ["error", 3],
+    },
+  },
   { files: ["**/*.{js,mjs,cjs,ts,jsx,tsx}"] },
   pluginJs.configs.recommended,
   sonarJs.configs.recommended,
@@ -17,7 +22,6 @@ export default [
   ...tailwind.configs["flat/recommended"],
   {
     ignores: [
-      ".next/",
       "node_modules/",
       "out/",
       "**/*.min.js",
@@ -31,6 +35,8 @@ export default [
       "*.config.js",
       "env.mjs",
       "report-bundle-size.js",
+      "public/*",
+      ".next/",
     ],
   },
 ]

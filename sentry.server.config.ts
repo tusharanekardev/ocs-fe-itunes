@@ -1,5 +1,5 @@
-import * as Sentry from "@sentry/nextjs";
-import { env } from "./env.mjs";
+import * as Sentry from "@sentry/nextjs"
+import { env } from "./env.mjs"
 
 Sentry.init({
   dsn: env.SENTRY_DSN_TOKEN,
@@ -8,4 +8,4 @@ Sentry.init({
   // of transactions for tracing.
   // We recommend adjusting this value in production
   tracesSampleRate: 1.0,
-});
+})

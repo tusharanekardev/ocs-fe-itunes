@@ -1,7 +1,8 @@
 import * as Sentry from "@sentry/nextjs";
+import { env } from "./env.mjs";
 
 Sentry.init({
-  dsn: process.env.SENTRY_DS_TOKEN,
+  dsn: env.SENTRY_DSN_TOKEN,
 
   // Set tracesSampleRate to 1.0 to capture 100%
   // of transactions for tracing.

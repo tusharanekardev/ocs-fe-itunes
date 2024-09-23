@@ -7,9 +7,12 @@ export const env = createEnv({
       .enum(["true", "false"])
       .optional()
       .transform((value) => value === "true"),
+    SENTRY_DSN_TOKEN: z.string().optional(),
   },
-  client: {},
+  client: {
+  },
   runtimeEnv: {
     ANALYZE: process.env.ANALYZE,
+    SENTRY_DSN_TOKEN: process.env.SENTRY_DSN_TOKEN,
   },
 })

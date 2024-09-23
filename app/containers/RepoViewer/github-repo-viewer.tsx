@@ -32,7 +32,9 @@ export function GithubRepoViewer() {
   })
 
   const handleFetchRepos = () => {
-    fetchRepos()
+    // fetchRepos()
+    console.log("fetchRepos")
+    throw new Error("fetchRepos")
   }
 
   return (

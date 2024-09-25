@@ -8,7 +8,7 @@ import { Input } from "@/app/components/ui/input/input"
 import { Button } from "@/app/components/ui/button/button"
 import { repoNameState, reposState, errorState, loadingState, fetchReposSelector } from "./recoilState"
 
-export function GithubRepoViewer() {
+export function GithubRepo() {
   const t = useTranslations()
   const [repoName, setRepoName] = useRecoilState(repoNameState)
   const [repos] = useRecoilState(reposState)

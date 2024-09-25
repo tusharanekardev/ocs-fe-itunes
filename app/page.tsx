@@ -1,7 +1,6 @@
 import React from "react"
 import { Metadata } from "next"
-import { GithubRepoViewer } from "./containers/RepoViewer/github-repo-viewer"
-import RootLayout from "./layout"
+import { GithubRepo } from "./containers/Repo/Repo"
 
 export const metadata: Metadata = {
   title: "Next.js Enterprise Boilerplate",
@@ -20,10 +19,6 @@ export const metadata: Metadata = {
   },
 }
 
-export default function Web() {
-  return (
-    <RootLayout>
-      <GithubRepoViewer />
-    </RootLayout>
-  )
+export default function Home(){
+  return <GithubRepo />
 }

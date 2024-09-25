@@ -1,6 +1,6 @@
 import React from "react"
 import { Metadata } from "next"
-import { GithubRepo } from "./containers/Repo/Repo"
+import Repo from "./containers/Repo";
 
 export const metadata: Metadata = {
   title: "Next.js Enterprise Boilerplate",
@@ -20,5 +20,5 @@ export const metadata: Metadata = {
 }
 
 export default function Home(){
-  return <GithubRepo />
+  return <Repo />
 }

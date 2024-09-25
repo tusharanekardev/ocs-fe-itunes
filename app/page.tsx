@@ -1,6 +1,6 @@
 import React from "react"
 import { Metadata } from "next"
-import Repo from "./containers/Repo";
+import Repo from "@/app/containers/Repo"
 
 export const metadata: Metadata = {
   title: "Next.js Enterprise Boilerplate",

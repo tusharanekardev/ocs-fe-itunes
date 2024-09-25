@@ -1,7 +1,7 @@
+"use client"
 import React from "react"
 import { useRecoilState, useRecoilCallback } from "recoil"
 import { useTranslations } from "next-intl"
-import { Card, CardContent, CardHeader, CardTitle } from "@/app/components/ui/card/card"
 import { Input } from "@/app/components/ui/input/input"
 import { Button } from "@/app/components/ui/button/button"
 import { repoNameState, reposState, errorState, loadingState, fetchReposSelector } from "./recoilState"
@@ -48,4 +48,4 @@ const RepoHeader = () => {
   )
 }
 
-export default RepoHeader
+export default React.memo(RepoHeader)

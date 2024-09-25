@@ -1,8 +1,8 @@
 import React from "react"
-import { useRecoilState } from "recoil"
+// import { useRecoilState } from "recoil"
 import { useTranslations } from "next-intl"
-import RepoHeader from "./RepoHeader"
-import RepoBody from "./RepoBody"
+// import RepoHeader from "./RepoHeader"
+// import RepoBody from "./RepoBody"
 
 const Repo = () => {
   const t = useTranslations()

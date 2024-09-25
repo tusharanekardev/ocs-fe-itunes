@@ -4,7 +4,7 @@ import React from "react"
 import { useRecoilState } from "recoil"
 import { useTranslations } from "next-intl"
 import { Card, CardContent, CardHeader, CardTitle } from "@/app/components/ui/card/card"
-import { reposState, errorState } from "./recoilState"
+import { reposState } from "./recoilState"
 
 const RepoBody = () => {
   const t = useTranslations()
@@ -12,33 +12,33 @@ const RepoBody = () => {
 
   return (
     <div className="space-y-4">
-        {repos.map((repo) => (
+      {repos.map((repo) => (
         <Card key={repo.id}>
-            <CardHeader>
+          <CardHeader>
             <CardTitle>
-                <a
+              <a
                 href={repo.html_url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-blue-600 hover:underline"
-                >
+              >
                 {repo.name}
-                </a>
+              </a>
             </CardTitle>
-            </CardHeader>
-            <CardContent>
+          </CardHeader>
+          <CardContent>
             <p>
-                {t("stars")}: {repo.stargazers_count}
+              {t("stars")}: {repo.stargazers_count}
             </p>
             <p>
-                {t("forks")}: {repo.forks_count}
+              {t("forks")}: {repo.forks_count}
             </p>
             <p>
-                {t("last_updated")}: {new Date(repo.updated_at).toLocaleDateString()}
+              {t("last_updated")}: {new Date(repo.updated_at).toLocaleDateString()}
             </p>
-            </CardContent>
+          </CardContent>
         </Card>
-        ))}
+      ))}
     </div>
   )
 }

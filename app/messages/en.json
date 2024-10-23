@@ -6,5 +6,8 @@
   "error_fetch": "Failed to fetch repositories",
   "stars": "Stars",
   "forks": "Forks",
-  "last_updated": "Last Updated"
+  "last_updated": "Last Updated",
+  "enter_track_name": "Enter Itunes Track Name",
+  "fetch_tracks": "Fetch Tracks",
+  "error_fetch_tracks": "Failed to fetch tracks"
 }

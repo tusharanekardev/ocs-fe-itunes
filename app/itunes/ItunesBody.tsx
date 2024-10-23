@@ -18,7 +18,6 @@ const ItunesBody = () => {
                 <p>{track.trackName}</p>
               </Link>
             </CardTitle>
-            ``
           </CardHeader>
           <CardContent>
             <p>{track.artistName}</p>

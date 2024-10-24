@@ -4,7 +4,7 @@ import { useRecoilState, useRecoilValue } from "recoil"
 import { Play, Pause } from "lucide-react"
 import { currentTrackState, isPlayingState } from "./recoilState"
 import { Button } from "../components/ui/button/button"
-import { useEffect, useRef } from "react"
+import React, { useEffect, useRef } from "react"
 
 const TrackPlayer = () => {
   const currentTrack = useRecoilValue(currentTrackState)

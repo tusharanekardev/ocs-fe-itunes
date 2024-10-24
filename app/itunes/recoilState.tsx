@@ -1,7 +1,7 @@
 import { fetchWithCheck } from "@/lib/apiUtils";
 import { atom, selector } from "recoil";
 
-interface Track {
+export interface Track {
     wrapperType: string;
     kind: string;
     artistId: number;
@@ -55,7 +55,7 @@ export const loadingState = atom<boolean>({
     default: false
 })
 
-interface ItunesResponse {
+export interface ItunesResponse {
     resultCount: number,
     results: Track[], 
 }

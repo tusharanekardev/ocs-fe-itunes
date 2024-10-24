@@ -7,7 +7,7 @@ export default function Page() {
     <div className="container mx-auto max-w-3xl p-4">
       <h1 className="mb-4 text-2xl font-bold">Itunes Tracks</h1>
       <ItunesHeader />
-      <ItunesBody/>
+      <ItunesBody />
     </div>
   )
 }

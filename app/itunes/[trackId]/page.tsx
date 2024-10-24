@@ -1,13 +1,13 @@
 "use client"
 
-import { useRecoilState } from "recoil"
+import { useRecoilState, useRecoilValueLoadable } from "recoil"
 import { tracksState } from "../recoilState"
 import { useRef, useState } from "react"
+import { fetchTrackByIdSelector } from "./recoilState"
 
 export default function Page({ params }: { params: { trackId: string } }) {
   const [tracks] = useRecoilState(tracksState)
-  const track = tracks?.find((item) => item.trackId === parseInt(params.trackId))
-
+  const track = tracks?.find((item) => item.trackId === parseInt(params.trackId)) || useRecoilValueLoadable(fetchTrackByIdSelector(params.trackId)).contents
   const [isPlaying, setIsPlaying] = useState(false)
   const audioRef = useRef<HTMLAudioElement | null>(null)
 
@@ -21,8 +21,6 @@ export default function Page({ params }: { params: { trackId: string } }) {
       setIsPlaying((prevIsPlaying) => !prevIsPlaying)
     }
   }
-
-
 
   return (
     <div className="flex justify-center items-center h-screen shadow-lg ">

@@ -6,5 +6,8 @@
   "error_fetch": "Abrufen der Repositories fehlgeschlagen",
   "stars": "Sterne",
   "forks": "Gabeln",
-  "last_updated": "Zuletzt aktualisiert"
+  "last_updated": "Zuletzt aktualisiert",
+  "enter_track_name": "Geben Sie den iTunes-Titelnamen ein",
+  "fetch_tracks": "Titel abrufen",
+  "error_fetch_tracks": "Titel konnten nicht abgerufen werden"
 }

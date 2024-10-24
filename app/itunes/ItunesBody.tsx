@@ -9,22 +9,25 @@ const ItunesBody = () => {
   const [tracks] = useRecoilState(tracksState)
   return (
     <div>
-      {tracks?.map((track) => (
-        <Card key={track.trackId}>
-          <img src={track.artworkUrl100} alt={track.trackName} />
-          <CardHeader>
-            <CardTitle>
-              <Link href={`/itunes/${track.trackId}`}>
-                <p>{track.trackName}</p>
-              </Link>
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p>{track.artistName}</p>
-            <p>{track.collectionName}</p>
-          </CardContent>
-        </Card>
-      ))}
+      {tracks?.map((track) => {
+        const { trackId, artworkUrl100, trackName, artistName, collectionName } = track
+        return (
+          <Card key={trackId}>
+            <img src={artworkUrl100} alt={trackName} />
+            <CardHeader>
+              <CardTitle>
+                <Link href={`/itunes/${trackId}`}>
+                  <p>{trackName}</p>
+                </Link>
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p>{artistName}</p>
+              <p>{collectionName}</p>
+            </CardContent>
+          </Card>
+        )
+      })}
     </div>
   )
 }

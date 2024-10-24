@@ -1,9 +1,9 @@
-import { atom, selectorFamily } from "recoil";
-import { ItunesResponse, Track } from "../recoilState";
-import { fetchWithCheck } from "@/lib/apiUtils";
+import { atom, selectorFamily } from "recoil"
+import { ItunesResponse, Track } from "../recoilState"
+import { fetchWithCheck } from "@/lib/apiUtils"
 
 export const trackByIdState = atom<Track[]>({
-    key: 'trackByIdState',
+    key: "trackByIdState",
     default: []
 })
 

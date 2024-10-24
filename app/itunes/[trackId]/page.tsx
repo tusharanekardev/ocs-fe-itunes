@@ -1,13 +1,14 @@
 "use client"
 
+import React, { useRef, useState  } from "react"
 import { useRecoilState, useRecoilValueLoadable } from "recoil"
 import { tracksState } from "../recoilState"
-import { useRef, useState } from "react"
 import { fetchTrackByIdSelector } from "./recoilState"
 
 export default function Page({ params }: { params: { trackId: string } }) {
   const [tracks] = useRecoilState(tracksState)
-  const track = tracks?.find((item) => item.trackId === parseInt(params.trackId)) || useRecoilValueLoadable(fetchTrackByIdSelector(params.trackId)).contents
+  let track = tracks?.find((item) => item.trackId === parseInt(params.trackId))
+  if(!track) track = useRecoilValueLoadable(fetchTrackByIdSelector(params.trackId)).contents
   const [isPlaying, setIsPlaying] = useState(false)
   const audioRef = useRef<HTMLAudioElement | null>(null)
 
@@ -21,7 +22,6 @@ export default function Page({ params }: { params: { trackId: string } }) {
       setIsPlaying((prevIsPlaying) => !prevIsPlaying)
     }
   }
-
   return (
     <div className="flex justify-center items-center h-screen shadow-lg ">
       <div className="flex space-x-4 bg-gray-300 shadow-lg p-4 rounded-lg relative ">
@@ -37,7 +37,7 @@ export default function Page({ params }: { params: { trackId: string } }) {
             <p className="mt-1 text-sm text-gray-500">{track?.collectionName}</p>
           </div>
           <p className="text-lg font-bold">${track?.trackPrice}</p>
-          <button className="absolute bottom-2 right-2" onClick={handleTogglePlayPause}>{isPlaying ? 'Pause' : 'Play'}</button>
+          <button className="absolute bottom-2 right-2" onClick={handleTogglePlayPause}>{isPlaying ? "Pause" : "Play"}</button>
         </div>
       </div>
         <audio ref={audioRef} src={track?.previewUrl}></audio>

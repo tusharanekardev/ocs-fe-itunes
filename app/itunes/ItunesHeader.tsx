@@ -19,6 +19,7 @@ const ItuensHeader = () => {
       const tracksData = await snapshot.getPromise(fetchTracksSelector)
       set(tracksState, tracksData)
     } catch (error) {
+      console.log(error)
       set(tracksState, [])
       setError("error_fetch")
     } finally {

@@ -8,7 +8,7 @@ import { fetchTrackByIdSelector } from "./recoilState"
 export default function Page({ params }: { params: { trackId: string } }) {
   const loadableTracks = useRecoilValueLoadable(fetchTrackByIdSelector(params.trackId))
   const [tracks] = useRecoilState(tracksState)
-  let track = tracks?.find((item) => item?.trackId === parseInt(params.trackId)) || loadableTracks?.contents
+  const track = tracks?.find((item) => item?.trackId === parseInt(params.trackId)) || loadableTracks?.contents
   const [isPlaying, setIsPlaying] = useState(false)
   const audioRef = useRef<HTMLAudioElement | null>(null)
 

@@ -14,14 +14,18 @@ const TrackPlayer = () => {
   function handleTogglePlayPause() {
     const audio = audioRef.current
     if (!audio) return
-    isPlaying ? audio.pause() : audio.play()
+
+    if (isPlaying) {
+      audio.pause()
+    } else {
+      audio.play()
+    }
     setIsPlaying((prevIsPlaying) => !prevIsPlaying)
   }
 
   useEffect(() => {
-    const audio = audioRef.current
-    if (audio) {
-      audio.play()
+    if (audioRef?.current) {
+      audioRef?.current.play()
     }
   }, [currentTrack])
 

@@ -2,8 +2,8 @@
 
 import React, { useRef, useState } from "react"
 import { useRecoilState, useRecoilValueLoadable } from "recoil"
-import { tracksState } from "../recoilState"
 import { fetchTrackByIdSelector } from "./recoilState"
+import { tracksState } from "../recoilState"
 
 export default function Page({ params }: { params: { trackId: string } }) {
   const loadableTracks = useRecoilValueLoadable(fetchTrackByIdSelector(params.trackId))

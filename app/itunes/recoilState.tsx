@@ -55,6 +55,16 @@ export const loadingState = atom<boolean>({
   default: false,
 })
 
+export const currentTrackState = atom<Track | null>({
+  key: "currentTrackState",
+  default: null,
+})
+
+export const isPlayingState = atom<boolean>({
+  key: "isPlayingState",
+  default: false,
+})
+
 export interface ItunesResponse {
   resultCount: number
   results: Track[]

@@ -29,23 +29,21 @@ const TrackPlayer = () => {
     }
   }, [currentTrack])
 
-  if (!currentTrack) return null
-
   return (
-    <div className="fixed bottom-0 left-0 right-0 flex items-center justify-between border-t border-border bg-background p-4">
-      <img src={currentTrack?.artworkUrl100} alt={`${currentTrack.trackName} cover`} className="rounded-lg" />
-      <div>
-        <h3 className="font-semibold">{currentTrack.trackName}</h3>
-        <p className="text-sm text-muted-foreground">{currentTrack.artistName}</p>
-      </div>
-      <Button size="icon" onClick={handleTogglePlayPause}>
-        {isPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
-        <span className="sr-only">{isPlaying ? "Pause" : "Play"}</span>
-      </Button>
-      <audio ref={audioRef} src={currentTrack?.previewUrl}>
-        <track kind="captions" src="captions_en.vtt" label="English" default />
-      </audio>
+    currentTrack?.trackId && <div className="fixed bottom-0 left-0 right-0 flex items-center justify-between border-t border-border bg-background p-4">
+    <img src={currentTrack?.artworkUrl100} alt={`${currentTrack.trackName} cover`} className="rounded-lg" />
+    <div>
+      <h3 className="font-semibold">{currentTrack.trackName}</h3>
+      <p className="text-sm text-muted-foreground">{currentTrack.artistName}</p>
     </div>
+    <Button size="icon" onClick={handleTogglePlayPause}>
+      {isPlaying ? <Pause className="h-4 w-4" /> : <Play className="h-4 w-4" />}
+      <span className="sr-only">{isPlaying ? "Pause" : "Play"}</span>
+    </Button>
+    <audio ref={audioRef} src={currentTrack?.previewUrl}>
+      <track kind="captions" src="captions_en.vtt" label="English" default />
+    </audio>
+  </div>
   )
 }
 
